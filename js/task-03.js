@@ -13,4 +13,9 @@ const images = [
   },
 ];
 
-for (let el of images) document.querySelector('.gallery').insertAdjacentHTML('beforeEnd', `<li><img src="${el.url}" alt="${el.alt}" width = 500 height = 250></li>`);
+const galleryElem = ({ url, alt }) =>
+  `<li><img src="${url}" alt="${alt}" width = 500 height = 250></li>`;
+const galleryMarkup = images.reduce((acc, item) => acc + galleryElem(item), "");
+const galeryItem = document.querySelector(".gallery");
+galeryItem.insertAdjacentHTML('afterbegin', galleryMarkup);
+galeryItem.setAttribute("style", "list-style-type: none; display: flex; justify-content: space-between;");
